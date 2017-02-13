@@ -1,0 +1,8 @@
+TQIMX6Q BOARD
+M:	Fabio Estevam <fabio.estevam@freescale.com>
+S:	Maintained
+F:	board/freescale/tqimx6q/
+F:	include/configs/tqimx6q.h
+F:	configs/mx6dlsabresd_defconfig
+F:	configs/mx6qsabresd_defconfig
+F:	configs/mx6sabresd_spl_defconfig
