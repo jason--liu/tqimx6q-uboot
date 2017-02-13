@@ -3,3 +3,4 @@ export ARCH=arm
 export CROSS_COMPILE=/usr/local/fsl-linaro-toolchain/bin/arm-fsl-linux-gnueabi-
 make tqimx6q_defconfig
 make -j8
+cp u-boot.imx /work/imx6/root/

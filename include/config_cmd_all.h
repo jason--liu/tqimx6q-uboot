@@ -65,10 +65,10 @@
 #define CONFIG_CMD_MISC		/* Misc functions like sleep etc*/
 #define CONFIG_CMD_MMC		/* MMC support			*/
 #define CONFIG_CMD_MTDPARTS	/* mtd parts support		*/
-//#define CONFIG_CMD_NAND		/* NAND support			*/
+#define CONFIG_CMD_NAND		/* NAND support			*/
 #define CONFIG_CMD_NET		/* bootp, tftpboot, rarpboot	*/
 #define CONFIG_CMD_NFS		/* NFS support			*/
-//#define CONFIG_CMD_ONENAND	/* OneNAND support		*/
+#define CONFIG_CMD_ONENAND	/* OneNAND support		*/
 #define CONFIG_CMD_PCI		/* pciinfo			*/
 #define CONFIG_CMD_PCMCIA	/* PCMCIA support		*/
 #define CONFIG_CMD_PING		/* ping support			*/
