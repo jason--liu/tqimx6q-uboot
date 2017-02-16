@@ -108,13 +108,11 @@
 #define CONFIG_MACH_TYPE	3980
 #define CONFIG_MXC_UART_BASE	UART1_BASE
 #define CONFIG_CONSOLE_DEV		"ttymxc0"
-#define CONFIG_MMCROOT			"/dev/mmcblk2p2"  /* SDHC3 */
+#define CONFIG_MMCROOT			"/dev/mmcblk1p2"  /* SDHC2 */
 
 #define CONFIG_DEFAULT_FDT_FILE	"imx6q-sabresd.dtb"
 #define PHYS_SDRAM_SIZE		(2u * 1024 * 1024 * 1024)
 
-
-//#include "mx6sabre_common.h"
 #define CONFIG_ARP_TIMEOUT     200UL
 
 /* Miscellaneous configurable options */
@@ -238,11 +236,25 @@
 #define CONFIG_POWER_PFUZE100
 #define CONFIG_POWER_PFUZE100_I2C_ADDR	0x08
 
+#ifdef CONFIG_SYS_BOOT_NAND
+#define CONFIG_MFG_NAND_PARTITION "mtdparts=gpmi-nand:64m(boot),16m(kernel),16m(dtb),-(rootfs) "
+#else
+#define CONFIG_MFG_NAND_PARTITION ""
+#endif
 
-/*#define CONFIG_SPLASH_SCREEN*/
-/*#define CONFIG_MXC_EPDC*/
+#define CONFIG_MFG_ENV_SETTINGS \
+	"mfgtool_args=setenv bootargs console=" CONFIG_CONSOLE_DEV ",115200 " \
+		"rdinit=/linuxrc " \
+		"g_mass_storage.stall=0 g_mass_storage.removable=1 " \
+		"g_mass_storage.idVendor=0x066F g_mass_storage.idProduct=0x37FF "\
+		"g_mass_storage.iSerialNumber=\"\" "\
+		"enable_wait_mode=off "\
+		CONFIG_MFG_NAND_PARTITION \
+		"\0" \
+		"initrd_addr=0x12C00000\0" \
+		"initrd_high=0xffffffff\0" \
+		"bootcmd_mfg=run mfgtool_args;bootz ${loadaddr} ${initrd_addr} ${fdt_addr};\0" \
 
-/*
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	CONFIG_MFG_ENV_SETTINGS \
 	"script=boot.scr\0" \
@@ -269,7 +281,6 @@
 	"bootz ${loadaddr} - ${fdt_addr}\0" \
 	"bootcmd_net=mmc dev 1;run mmcargs;tftp ${loadaddr} ${image};tftp ${fdt_addr} ${fdt_file};bootz ${loadaddr} - ${fdt_addr}\0" \
 
-*/
 
 #ifndef CONFIG_MX6UL
 #define CONFIG_ARM_ERRATA_743622
